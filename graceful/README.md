@@ -42,7 +42,7 @@ Hello world.
 2. Secondly, send a `Restart` signal to the server process `29472`.
 
 ```
-kill -HUP 2472
+kill -HUP 29472
 ```
 
 and you will received the following messages:
