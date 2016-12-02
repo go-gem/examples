@@ -23,3 +23,10 @@ hello world.
 files
 ...
 ```
+
+Check out your console, some debug messages come in slight:
+
+```
+GET: /
+GET: /tmp
+```

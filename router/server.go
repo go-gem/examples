@@ -7,8 +7,22 @@ import (
 	"github.com/go-gem/log"
 )
 
+type debugMiddleware struct{}
+
+func (m *debugMiddleware) Handle(next gem.Handler) gem.Handler {
+	return gem.HandlerFunc(func(ctx *gem.Context) {
+		// print the request's method and path.
+		ctx.Logger().Printf("%s: %s\n", ctx.Method(), ctx.Path())
+
+		next.Handle(ctx)
+	})
+}
+
 func main() {
 	router := gem.NewRouter()
+
+	// Use middleware.
+	router.Use(&debugMiddleware{})
 
 	// GET
 	router.GET("/", func(ctx *gem.Context) {
