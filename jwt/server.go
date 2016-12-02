@@ -13,23 +13,23 @@ import (
 
 type UserClaims struct {
 	jwt.StandardClaims
-	ID   int `json:"id"`
+	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
 
 var (
 	// users, key => value equal that name => id.
 	users = map[string]int{
-		"foo":1,
-		"bar":2,
+		"foo": 1,
+		"bar": 2,
 	}
 )
 
 // jwt configuration.
 var (
 	signingMethod = jwt.SigningMethodHS256
-	signKey = []byte("123456789")
-	keyFunc = func(token *jwt.Token) (interface{}, error) {
+	signKey       = []byte("123456789")
+	keyFunc       = func(token *jwt.Token) (interface{}, error) {
 		return signKey, nil
 	}
 
@@ -56,10 +56,10 @@ func generateHandler(ctx *gem.Context) {
 	}
 
 	token := jwt.NewWithClaims(signingMethod, UserClaims{
-		ID:id,
-		Name:name,
-		StandardClaims:jwt.StandardClaims{
-			ExpiresAt:time.Now().Unix() + 600,
+		ID:   id,
+		Name: name,
+		StandardClaims: jwt.StandardClaims{
+			ExpiresAt: time.Now().Unix() + 600,
 		},
 	})
 	s, err := token.SignedString(signKey)
@@ -68,7 +68,7 @@ func generateHandler(ctx *gem.Context) {
 		return
 	}
 
-	ctx.HTML(200, "token: " + s)
+	ctx.HTML(200, "token: "+s)
 }
 
 func homeHandler(ctx *gem.Context) {
@@ -98,5 +98,3 @@ func main() {
 
 	log.Fatal(gem.ListenAndServe(":1234", router.Handler))
 }
-
-

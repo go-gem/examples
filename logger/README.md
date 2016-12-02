@@ -1,5 +1,7 @@
 # Logger
 
+[Wiki](https://github.com/go-gem/gem/wiki/Logger)
+
 Gem defines a [Logger](https://godoc.org/github.com/go-gem/gem#Logger) interface, so it is easy to custom logger.
 
 AFAIK, the following logging packages are compatible with Gem:

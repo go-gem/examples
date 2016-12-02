@@ -1,9 +1,9 @@
 package main
 
 import (
-	"log"
-	"html/template"
 	"fmt"
+	"html/template"
+	"log"
 
 	"github.com/go-gem/gem"
 	"github.com/go-gem/gem/middleware"
@@ -11,8 +11,8 @@ import (
 
 var (
 	users = map[string]string{
-		"foo":"foopsw",
-		"bar":"barpsw",
+		"foo": "foopsw",
+		"bar": "barpsw",
 	}
 )
 
@@ -26,9 +26,9 @@ var (
 )
 
 func loginGet(ctx *gem.Context) {
-	ctx.Response.Header.SetContentTypeBytes(gem.ContentTypeHTML)
+	ctx.Response.Header.SetContentTypeBytes(gem.HeaderContentTypeHTML)
 	err := tpl.Execute(ctx, map[string]interface{}{
-		"CSRF":ctx.UserValue("_csrf"),
+		"CSRF": ctx.UserValue("_csrf"),
 	})
 
 	if err != nil {
@@ -77,5 +77,3 @@ func main() {
 
 	log.Fatal(gem.ListenAndServe(":1234", router.Handler))
 }
-
-
