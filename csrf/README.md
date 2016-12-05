@@ -14,4 +14,3 @@ go get github.com/go-gem/examples
 - [Leveled logging](logger)
 - [Router](router)
 - [Graceful shutdown and restart](graceful)
-- [Listen multiple ports at single process](multiport)
