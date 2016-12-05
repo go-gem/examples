@@ -30,3 +30,15 @@ Check out your console, some debug messages come in slight:
 GET: /
 GET: /tmp
 ```
+
+**REST APIs**
+
+|Url                                                                    | Method | Output                                                                          |
+|:-----------------------------------------------------------------     |:------ |:--------------------------------------------------------------------------------|
+|[/users](http://localhost:8080/users)                                  | GET    |{"bar":{"name":"bar","company":"combar"},"foo":{"name":"foo","company":"comfoo"}}|
+|[/users/foo](http://localhost:8080/users/foo)                          | GET    |{"name":"foo","company":"comfoo"}                                                |
+|[/users/foo](http://localhost:8080/users/foo)                          | DELETE |null                                                                             |
+|[/users?name=a&company=b](http://localhost:8080/users?name=a&company=b)| POST   |{"name":"a","company":"b"}                                                       |
+|[/users/a?company=b](http://localhost:8080/users/a?company=b)          | PUT    |{"name":"a","company":"new"}                                                     |
+|[/users](http://localhost:8080/users)                                  | GET    |{"a":{"name":"a","company":"new"},"bar":{"name":"bar","company":"combar"}}       |
+
