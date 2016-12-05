@@ -1,44 +1,21 @@
-# Router
+# Sessions
 
-[Wiki](https://github.com/go-gem/gem/wiki/Router)
+[Wiki](https://github.com/go-gem/gem/wiki/Sessions)
+
+A simple example of sign in and sign out.
 
 Start the server:
 
 ```
-go run $GOPATH/src/github.com/go-gem/examples/router/server.go
+go run $GOPATH/src/github.com/go-gem/examples/session/server.go
 ```
 
-And then navigate to:
+And then navigate to [http://localhost:8080](http://localhost:8080).
 
-1. [http://localhost:8080](http://localhost:8080)
-
-```
-hello world.
-```
-
-2. [http://localhost:8080/tmp](http://localhost:8080/tmp)
+**Important note**: it is **necessary** that use the sessions middleware to save and clear session,
+otherwise, any changes of session would not be save, not only that, all of sessions are confused,
+because the `fasthttp` using sync.Pool to reuse `fasthttp.RequestCtx` instance.
 
 ```
-...
-files
-...
+router.Use(middleware.NewSessions())
 ```
-
-Check out your console, some debug messages come in slight:
-
-```
-GET: /
-GET: /tmp
-```
-
-**REST APIs**
-
-|Url                                                                    | Method | Output                                                                          |
-|:-----------------------------------------------------------------     |:------ |:--------------------------------------------------------------------------------|
-|[/users](http://localhost:8080/users)                                  | GET    |{"bar":{"name":"bar","company":"combar"},"foo":{"name":"foo","company":"comfoo"}}|
-|[/users/foo](http://localhost:8080/users/foo)                          | GET    |{"name":"foo","company":"comfoo"}                                                |
-|[/users/foo](http://localhost:8080/users/foo)                          | DELETE |null                                                                             |
-|[/users?name=a&company=b](http://localhost:8080/users?name=a&company=b)| POST   |{"name":"a","company":"b"}                                                       |
-|[/users/a?company=b](http://localhost:8080/users/a?company=b)          | PUT    |{"name":"a","company":"new"}                                                     |
-|[/users](http://localhost:8080/users)                                  | GET    |{"a":{"name":"a","company":"new"},"bar":{"name":"bar","company":"combar"}}       |
-
