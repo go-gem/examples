@@ -8,20 +8,15 @@ the old server wont be shutdown until all of in-process connections have been fi
 
 ## Restart
 
-Let me show you how to restart your server gracefully.
+Let's take a look at how to restart server gracefully.
 
 ### First step
 
-**Compile**
+**Compile and start the server**
 
 ```
 cd $GOPATH/src/github.com/go-gem/examples/graceful
 go install
-```
-
-**Start server**
-
-```
 $GOPATH/bin/graceful
 2016/12/01 19:48:53 Server started at process 29472
 ```
@@ -73,6 +68,5 @@ kill -TERM 30979
 ```
 2016/12/01 20:33:55 [30979] received signal "terminated".
 2016/12/01 20:33:55 [30979] shutting down the server(:8080)...
-2016/12/01 20:34:10 [30979] server(:8080) has been shutdown, but some exsiting connctions reach error: timeout.
 2016/12/01 20:34:10 [30979] all of old servers have been shutdown successfully.
 ```
